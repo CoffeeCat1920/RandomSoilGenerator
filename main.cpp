@@ -1,15 +1,18 @@
 #include "./include/raylib.h"
+#include "./include/settings.h"
+#include "./include/colors.h"
 
 int main (int argc, char *argv[]) {
   
-  InitWindow( 64*5 , 64*5, "Animation Test");
+  InitWindow(BLOCK * BOARD, BLOCK * BOARD, "Soil thing");
+  SetTargetFPS(60);
 
   while ( !WindowShouldClose() )
   { 
 
     BeginDrawing();
 
-    ClearBackground(GRAY);
+    ClearBackground(GRUVBOX_DARK0);
 
     EndDrawing();
     
