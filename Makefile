@@ -1,58 +1,68 @@
 # Define the compiler
 CXX = g++
 
-# Define the directories
+# Define directories
 SRCDIR = src
 INCDIR = include
+COREINCDIR = $(INCDIR)/core
+RAYLIBINCDIR = $(INCDIR)/raylib
+WORLDINCDIR = $(INCDIR)/world
 BINDIR = bin
 LIBDIR = lib
 
-# Define the target executable
-TARGET = $(BINDIR)/app
+# Target executable
+TARGET = $(BINDIR)/core
 
-# Define the source files
-SOURCES = $(wildcard $(SRCDIR)/*.cpp)
+# Find all .cpp files in src/ and subdirectories
+SRCFILES = $(wildcard $(SRCDIR)/**/*.cpp) $(wildcard $(SRCDIR)/*.cpp)
 
-# Define the object files
-OBJECTS = $(patsubst $(SRCDIR)/%.cpp, $(BINDIR)/%.o, $(SOURCES)) main.cpp
+# Add main.cpp from root
+SRCFILES += main.cpp
 
-# Define the compiler flags
-CXXFLAGS = -I$(INCDIR)
+# Create corresponding .o file paths under bin/
+OBJECTS = $(patsubst %.cpp, $(BINDIR)/%.o, $(SRCFILES))
 
-# Define the linker flags
+# Compiler flags
+CXXFLAGS = -I$(COREINCDIR) -I$(RAYLIBINCDIR) -I$(WORLDINCDIR) -std=c++17
+
+# Linker flags
 LDFLAGS = -L$(LIBDIR) -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
-# Default rule to build the target
+# Default rule
 all: $(TARGET)
 
-# Rule to link the object files into the target executable
+# Link object files into final binary
 $(TARGET): $(OBJECTS)
-	@echo "Linking: $(OBJECTS)"
-	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
+	@echo "Linking: $@"
+	$(CXX) $^ -o $@ $(LDFLAGS)
 
-# Rule to compile source files into object files
-$(BINDIR)/%.o: $(SRCDIR)/%.cpp
+# Rule to compile .cpp files into .o files in bin/
+$(BINDIR)/%.o: %.cpp
 	@echo "Compiling $<"
-	mkdir -p $(BINDIR)
+	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Clean up generated files
+# Clean build artifacts
 clean:
-	rm -rf $(BINDIR)/*.o $(TARGET)
+	@echo "Cleaning build..."
+	@rm -rf $(BINDIR)/*.o $(TARGET) $(BINDIR)/**/*.o
 
-# Debug variables
+# Debug info
 debug:
-	@echo "Sources: $(SOURCES)"
-	@echo "Objects: $(OBJECTS)"
+	@echo "Source files:"
+	@echo $(SRCFILES)
+	@echo
+	@echo "Object files:"
+	@echo $(OBJECTS)
+	@echo
 	@echo "Target: $(TARGET)"
 
 # Run the program
 run: all
-	./$(TARGET)
+	@./$(TARGET)
 
-# Clean, then build and run
+# Clean, build, and run
 run-clean: clean all
-	./$(TARGET)
+	@./$(TARGET)
 
-# Phony targets
 .PHONY: all clean debug run run-clean
