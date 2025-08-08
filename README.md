@@ -1,8 +1,11 @@
 # Renderer Development To-Do List
 
-## Rendering Ground
+## Rendering 
 - [X] Rendering a block
-- [ ] Rendering a small map
+- [X] Rendering a small map
+- [ ] A way to store the map data
+- [ ] Adding layers/z-levels
+- [ ] Adding slope and half tiles
 
 ---
 
@@ -17,5 +20,3 @@
 ## Moving Around 
 - [ ] Implement moving around 
 - [ ] Bounding moving around to ground 
-
----

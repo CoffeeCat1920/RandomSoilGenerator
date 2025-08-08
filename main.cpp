@@ -17,10 +17,11 @@ public:
   }
 
   void Draw() {
-    tileSet.DrawTile(GRASS, BLOCK_X * 0, BLOCK_Y * 0);
-    tileSet.DrawTile(GRASS, BLOCK_X * 1, BLOCK_Y * 1);
+    tileSet.DrawTile(GRASS, (float)BOARD/2, 0);
+    tileSet.DrawTile(GRASS, (float)BOARD/2, 1);
+    tileSet.DrawTile(GRASS, (float)BOARD/2 + 1, 0);
+    tileSet.DrawTile(GRASS, (float)BOARD/2 + 1, 1);
   }
-
 };
 
 int main (int argc, char *argv[]) {
