@@ -19,7 +19,7 @@ public:
   }
 
   void Draw() {
-    tileSet.DrawTile(0, (float)GetScreenWidth()/2, (float)GetScreenHeight()/2);
+    tileSet.DrawTile(0, BOARD/2, BOARD/2);
   }
 };
 

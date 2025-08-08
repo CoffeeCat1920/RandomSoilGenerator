@@ -33,5 +33,5 @@ public:
   ~TileSet();
 
   void Init();
-  void DrawTile(uint16_t tileId, float x, float y);
+  void DrawTile(uint16_t tileId, int x, int y);
 };

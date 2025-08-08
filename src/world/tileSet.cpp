@@ -1,4 +1,5 @@
 #include "../../include/world/tileSet.h"
+#include "../../include/core/settings.h"
 #include "../../include/raylib/raylib.h"
 #include "../../include/nlohmann/json.hpp"
 #include <cstdint>
@@ -65,11 +66,14 @@ void TileSet::Init() {
 
 }
 
-void TileSet::DrawTile(uint16_t tileId, float x, float y) {
+void TileSet::DrawTile(uint16_t tileId, int x, int y) {
   if (tileId >= tiles.size() || !tiles[tileId]) {
     std::cerr << "Invalid tileId: " << tileId << '\n';
     return;
   }
 
-  DrawTextureRec(atlasTexture, texturesRecs[tileId], Vector2{x, y}, WHITE);
+  float positionX = (x - y) * (BLOCK_X / 2.0f);
+  float positionY = (x + y) * (BLOCK_X / 2.0f);
+
+  DrawTextureRec(atlasTexture, texturesRecs[tileId], Vector2{positionX, positionY}, WHITE);
 }
