@@ -1,5 +1,4 @@
-#ifndef WORLD_H
-#define WORLD_H
+#pragma once
 
 #include "../raylib/raylib.h"
 #include <string>
@@ -17,5 +16,3 @@ public:
   void Draw(float x, float y);
 
 };
-
-#endif

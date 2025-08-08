@@ -1,5 +1,4 @@
-#ifndef COLORS_H
-#define COLORS_H
+#pragma once
 
 #include "../raylib/raylib.h"
 
@@ -23,4 +22,3 @@ const Color GRUVBOX_PURPLE       = { 177,  98, 134, 255 };  // #b16286
 const Color GRUVBOX_AQUA         = { 104, 157, 106, 255 };  // #689d6a
 const Color GRUVBOX_ORANGE       = { 214,  93,  14, 255 };  // #d65d0e
 
-#endif //COLORS_H

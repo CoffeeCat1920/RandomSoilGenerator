@@ -1,8 +1,8 @@
 # Renderer Development To-Do List
 
 ## Rendering Ground
-- [ ] Define ground plane data (position, size)
-- [ ] Implement rendering of ground layer
+- [X] Rendering a block
+- [ ] Rendering a small map
 
 ---
 
