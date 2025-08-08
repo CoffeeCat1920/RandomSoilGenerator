@@ -1,7 +1,6 @@
 #include "./include/raylib/raylib.h"
 #include "./include/core/settings.h"
 #include "./include/core/colors.h"
-#include "include/world/tileIds.h"
 #include "include/world/tileSet.h"
 
 class Game {
@@ -12,15 +11,15 @@ private:
 
 public:
 
+  Game() : 
+    tileSet("./assets/Tiled/json/TileSet.json") {}
+
   void Init() {
     tileSet.Init();
   }
 
   void Draw() {
-    tileSet.DrawTile(GRASS, (float)BOARD/2, 0);
-    tileSet.DrawTile(GRASS, (float)BOARD/2, 1);
-    tileSet.DrawTile(GRASS, (float)BOARD/2 + 1, 0);
-    tileSet.DrawTile(GRASS, (float)BOARD/2 + 1, 1);
+    tileSet.DrawTile(0, (float)GetScreenWidth()/2, (float)GetScreenHeight()/2);
   }
 };
 

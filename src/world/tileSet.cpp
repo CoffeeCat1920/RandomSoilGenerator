@@ -1,20 +1,75 @@
 #include "../../include/world/tileSet.h"
-#include "../../include/world/tileIds.h"
-#include "../../include/core/settings.h"
+#include "../../include/raylib/raylib.h"
+#include "../../include/nlohmann/json.hpp"
 #include <cstdint>
+#include <fstream>
+#include <iostream>
 
-TileSet::TileSet() {}
+using json = nlohmann::json;
+
+TileSet::TileSet(std::string dataPath) : dataPath(dataPath) {}
 TileSet::~TileSet() {}
 
 void TileSet::Init() {
-  tileSet[GRASS] = std::make_shared<Tile>("assets/Tiles/png/Grass.png");
-  tileSet[STONE] = std::make_shared<Tile>("assets/Tiles/png/Stone.png");
+
+  std::ifstream file(dataPath); 
+  if (!file.is_open()) {
+    std::cerr << "Could not open TileSet.json\n";
+    return;
+  }
+
+  json tileData;
+  file >> tileData;
+
+  name = tileData["name"];
+
+  imageHeight = tileData["imageheight"];
+  imageWidth = tileData["imagewidth"];
+
+  tileWidth = tileData["tilewidth"];
+  tileHeight = tileData["tileheight"];
+
+  atlasPath = tileData["image"];
+
+  tileCount = tileData["tilecount"];
+
+  tiles.resize(tileCount);
+
+  for (const auto& tile : tileData["tiles"]) {
+    if (!tile.contains("id") || !tile.contains("properties")) continue;
+
+    int id = tile["id"];
+    std::string tileName;
+
+    for (const auto& prop : tile["properties"]) {
+      if (prop["name"] == "Name") {
+        tileName = prop["value"];
+        break;
+      }
+    }
+
+    if (id >= 0 && id < tileCount) {
+      tiles[id] = std::make_shared<Tile>(tileName);
+    }
+  }
+  
+  atlasPath = atlasPath.replace(0, 5, "./assets");
+  atlasTexture = LoadTexture(atlasPath.c_str());
+
+  for (int x = 0; x < imageHeight; x += tileHeight) {
+    for (int y = 0; y < imageWidth; y += tileWidth) {
+      Rectangle rec = Rectangle{(float)x, (float)y, (float)x + tileHeight, (float)y + tileWidth};
+      texturesRecs.push_back(rec);
+    }
+  }
+
 }
 
 void TileSet::DrawTile(uint16_t tileId, float x, float y) {
-  if (tileId < tileSet.size() && tileSet[tileId]) {
-      int positionX = (x - y) * ((float)BLOCK_X / 2);
-      int positionY = (x + y) * ((float)BLOCK_Y / 2);
-      tileSet[tileId]->Draw(positionX, positionY);
+  if (tileId >= tiles.size() || !tiles[tileId]) {
+    std::cerr << "Invalid tileId: " << tileId << '\n';
+    return;
   }
+
+  DrawTextureRec(atlasTexture, texturesRecs[tileId], Vector2{x, y}, WHITE);
 }

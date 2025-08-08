@@ -1,18 +1,18 @@
 #pragma once
 
 #include "../raylib/raylib.h"
+#include <cstdint>
 #include <string>
 
 class Tile {
-
+  
 private:
-  Image image;
-  Texture2D texture;
+  std::string name;
+  
 public:
 
-  Tile(std::string path);
-  ~Tile();
+  Tile(std::string name);
 
-  void Draw(float x, float y);
+  std::string Name();
 
 };
