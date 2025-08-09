@@ -7,6 +7,12 @@
          "target":"TileSet.json"
         }
     },
+ "grid":
+    {
+     "height":32,
+     "orientation":"isometric",
+     "width":32
+    },
  "image":"..\/..\/Tiles\/png\/TileSet.png",
  "imageheight":32,
  "imagewidth":64,

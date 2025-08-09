@@ -8,9 +8,11 @@ A farming game set on an alien planet.
 ## Rendering 
 - [X] Rendering a block
 - [X] Rendering a small map
-- [ ] Adding better way to add tiles inside the tilemap. prob automatically from a tileset
-- [ ] A way to store the map data
-- [ ] Adding layers/z-levels
+- [X] Adding better way to add tiles inside the tilemap. prob automatically from a tileset
+- [X] A way to store the map data
+- [ ] Cleaning Everything up
+- [ ] Adding Layers Support 
+- [ ] Adding z-levels
 - [ ] Adding slope and half tiles
 
 ---
@@ -22,7 +24,3 @@ A farming game set on an alien planet.
 - [ ] Clamp zoom level to reasonable bounds
 
 ---
-
-## Moving Around 
-- [ ] Implement moving around 
-- [ ] Bounding moving around to ground 

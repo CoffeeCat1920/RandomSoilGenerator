@@ -32,6 +32,9 @@ public:
   TileSet(std::string dataPath);
   ~TileSet();
 
+  int GetTileWidth();
+  int GetTileHeight();
+
   void Init();
   void DrawTile(uint16_t tileId, int x, int y);
 };
