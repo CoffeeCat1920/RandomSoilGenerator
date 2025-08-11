@@ -1,7 +1,6 @@
 #pragma once
 #include "../../include/nlohmann/json_utils.hpp"
 
-#include <cstdint>
 #include <string>
 #include <vector>
 
@@ -29,6 +28,6 @@ public:
   int Width(); 
   int Height();
 
-  const std::vector<std::vector<int>> Grid();
+  const std::vector<std::vector<int>>& Grid();
 
 };

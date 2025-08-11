@@ -6,11 +6,11 @@
 #include <vector>
 
 TileMap::TileMap(std::string dataPath) : 
-  tileSet("./assets/Tiled/json/TileSet.json"),
   dataPath(dataPath) {}
   
 void TileMap::Init() {
-  tileSet.Init();
+
+  tileSet.Init("./assets/Tiled/json/TileSet.json");
 
   std::ifstream file(dataPath);
   if (!file.is_open()) {
@@ -29,15 +29,20 @@ void TileMap::Init() {
     layers.push_back(std::make_shared<MapLayer>(layer));
   } 
 
+  std::cout << "INFO: TILEMAP [" << dataPath << "] Tilemap loaded successfully" << std::endl; 
+
 }
 
 void TileMap::Draw() {
   const std::vector<std::vector<int>> mapLayer = layers[0]->Grid();
 
-  for (int x = 0; x < layers[0]->Width(); ++x) {
-    for (int y = 0; y < layers[0]->Height(); ++y) {
-        int tileId = mapLayer[x][y];
-        tileSet.DrawTile(tileId-1, x, y);
+  for (int x = 0; x < 90; ++x) {
+    for (int y = 0; y < 90; ++y) {
+      int tileId = mapLayer[x][y];
+
+      if (tileId > 0) {
+        tileSet.DrawTile(tileId - 1, x, y);
+      }
     }
   }
 }

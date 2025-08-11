@@ -26,4 +26,4 @@ int MapLayer::Id() { return id; }
 int MapLayer::Width() { return layerWidth; } 
 int MapLayer::Height() { return layerHeight; }
 
-const std::vector<std::vector<int>> MapLayer::Grid() { return tileGrid; }
+const std::vector<std::vector<int>>& MapLayer::Grid() { return tileGrid; }

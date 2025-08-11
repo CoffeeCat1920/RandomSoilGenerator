@@ -6,13 +6,15 @@
 #include <fstream>
 #include <iostream>
 
-TileSet::TileSet(std::string dataPath) : dataPath(dataPath) {}
+TileSet::TileSet() {}
 TileSet::~TileSet() {}
 
 int TileSet::GetTileWidth() { return tileWidth; }
 int TileSet::GetTileHeight() { return tileHeight; }
 
-void TileSet::Init() {
+void TileSet::Init(std::string dataPath) {
+
+  this->dataPath = dataPath;
 
   std::ifstream file(dataPath); 
   if (!file.is_open()) {
@@ -64,6 +66,8 @@ void TileSet::Init() {
       texturesRecs.push_back(rec);
     }
   }
+
+  std::cout << "INFO: TILESET [" << atlasPath << "] Tileset loaded successfully" << std::endl; 
 
 }
 
