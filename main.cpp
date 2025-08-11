@@ -1,25 +1,20 @@
 #include "./include/raylib/raylib.h"
 #include "./include/core/settings.h"
 #include "./include/core/colors.h"
-#include "include/world/tileMap.h"
 
 class Game {
   
 private:
 
-  TileMap tileMap;
 
 public:
 
-  Game() : 
-    tileMap("./assets/Tiled/json/Normal.json") {}
+  Game() {} 
 
   void Init() {
-    tileMap.Init();
   }
 
   void Draw() {
-    tileMap.Draw();
   }
 };
 

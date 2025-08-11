@@ -19,8 +19,8 @@ SRCFILES = $(wildcard $(SRCDIR)/**/*.cpp) $(wildcard $(SRCDIR)/*.cpp)
 # Add main.cpp from root
 SRCFILES += main.cpp
 
-# Create corresponding .o file paths under bin/
-OBJECTS = $(patsubst %.cpp, $(BINDIR)/%.o, $(SRCFILES))
+# Object files (same location as .cpp files)
+OBJECTS = $(patsubst %.cpp, %.o, $(SRCFILES))
 
 # Compiler flags
 CXXFLAGS = -I$(COREINCDIR) -I$(RAYLIBINCDIR) -I$(WORLDINCDIR) -std=c++17
@@ -36,16 +36,15 @@ $(TARGET): $(OBJECTS)
 	@echo "Linking: $@"
 	$(CXX) $^ -o $@ $(LDFLAGS)
 
-# Rule to compile .cpp files into .o files in bin/
-$(BINDIR)/%.o: %.cpp
+# Rule to compile .cpp files into .o files in same folder
+%.o: %.cpp
 	@echo "Compiling $<"
-	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Clean build artifacts
 clean:
 	@echo "Cleaning build..."
-	@rm -rf $(BINDIR)/*.o $(TARGET) $(BINDIR)/**/*.o
+	@rm -rf $(OBJECTS) $(TARGET)
 
 # Debug info
 debug:
