@@ -21,6 +21,7 @@ public:
 int main (int argc, char *argv[]) {
   
   InitWindow(BLOCK * BOARD, BLOCK * BOARD, "Soil thing");
+
   SetTargetFPS(60);
 
   Game game;
