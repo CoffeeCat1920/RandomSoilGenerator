@@ -42,7 +42,7 @@ $(BINDIR)/%.o: %.cpp
 # Clean
 clean:
 	@echo "Cleaning build..."
-	rm -rf $(BINDIR)/$(SRCDIR) $(BINDIR)/main.o $(BINDIR)/main.d $(TARGET)
+	rm -rf $(BINDIR)/* $(TARGET)
 
 # Run
 run: all

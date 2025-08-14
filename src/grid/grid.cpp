@@ -1,8 +1,9 @@
 #include "grid.hpp"
 #include "isometric_math.hpp"
-#include "../core/settings.hpp"
-#include "colors.hpp"
-#include "raylib.h"
+
+#include "raylib/raylib.h"
+#include "core/settings.hpp"
+#include "core/colors.hpp"
 
 void Grid::DrawStencil() {
   

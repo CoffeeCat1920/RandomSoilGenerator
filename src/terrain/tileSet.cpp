@@ -1,7 +1,7 @@
 #include "tileSet.hpp"
-#include "../../include/nlohmann/json_utils.hpp"
+#include "nlohmann/json_utils.hpp"
 #include "../../include/raylib/raylib.h"
-#include "settings.hpp"
+#include "core/settings.hpp"
 
 #include <cstdint>
 #include <fstream>

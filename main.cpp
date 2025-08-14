@@ -1,8 +1,8 @@
-#include "./include/raylib/raylib.h"
-#include "./include/core/settings.hpp"
-#include "./include/core/colors.hpp"
+#include "raylib/raylib.h"
+#include "core/settings.hpp"
+#include "core/colors.hpp"
 
-#include "./src/grid/grid.hpp"
+#include "grid/grid.hpp"
 
 class Game {
   

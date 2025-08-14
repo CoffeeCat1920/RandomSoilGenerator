@@ -1,6 +1,6 @@
 #pragma once
 
-#include "raylib.h"
+#include "raylib/raylib.h"
 #include <cstdint>
 #include <filesystem>
 #include <memory>

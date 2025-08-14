@@ -1,5 +1,5 @@
-#include "raylib.h"
-#include "settings.hpp"
+#include "raylib/raylib.h"
+#include "core/settings.hpp"
 
 namespace IsocMath {
 

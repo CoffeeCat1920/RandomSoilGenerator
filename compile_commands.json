@@ -2,74 +2,79 @@
   {
     "arguments": [
       "/usr/bin/g++",
-      "-Iinclude/core",
-      "-Iinclude/raylib",
-      "-Iinclude/world",
+      "-Iinclude",
+      "-Isrc",
       "-std=c++17",
+      "-Wall",
+      "-Wextra",
       "-c",
       "-o",
-      "bin/src/world/mapLayer.o",
-      "src/world/mapLayer.cpp"
+      "bin/src/terrain/tileSet.o",
+      "src/terrain/tileSet.cpp"
     ],
     "directory": "/home/ok/Code/RandomSoilGenerator",
-    "file": "/home/ok/Code/RandomSoilGenerator/src/world/mapLayer.cpp",
-    "output": "/home/ok/Code/RandomSoilGenerator/bin/src/world/mapLayer.o"
+    "file": "/home/ok/Code/RandomSoilGenerator/src/terrain/tileSet.cpp",
+    "output": "/home/ok/Code/RandomSoilGenerator/bin/src/terrain/tileSet.o"
   },
   {
     "arguments": [
       "/usr/bin/g++",
-      "-Iinclude/core",
-      "-Iinclude/raylib",
-      "-Iinclude/world",
+      "-Iinclude",
+      "-Isrc",
       "-std=c++17",
+      "-Wall",
+      "-Wextra",
       "-c",
       "-o",
-      "bin/src/world/tile.o",
-      "src/world/tile.cpp"
+      "bin/src/terrain/tileMap.o",
+      "src/terrain/tileMap.cpp"
     ],
     "directory": "/home/ok/Code/RandomSoilGenerator",
-    "file": "/home/ok/Code/RandomSoilGenerator/src/world/tile.cpp",
-    "output": "/home/ok/Code/RandomSoilGenerator/bin/src/world/tile.o"
+    "file": "/home/ok/Code/RandomSoilGenerator/src/terrain/tileMap.cpp",
+    "output": "/home/ok/Code/RandomSoilGenerator/bin/src/terrain/tileMap.o"
   },
   {
     "arguments": [
       "/usr/bin/g++",
-      "-Iinclude/core",
-      "-Iinclude/raylib",
-      "-Iinclude/world",
+      "-Iinclude",
+      "-Isrc",
       "-std=c++17",
+      "-Wall",
+      "-Wextra",
       "-c",
       "-o",
-      "bin/src/world/tileMap.o",
-      "src/world/tileMap.cpp"
+      "bin/src/terrain/gen/terrainGet.o",
+      "src/terrain/gen/terrainGet.cpp"
     ],
     "directory": "/home/ok/Code/RandomSoilGenerator",
-    "file": "/home/ok/Code/RandomSoilGenerator/src/world/tileMap.cpp",
-    "output": "/home/ok/Code/RandomSoilGenerator/bin/src/world/tileMap.o"
+    "file": "/home/ok/Code/RandomSoilGenerator/src/terrain/gen/terrainGet.cpp",
+    "output": "/home/ok/Code/RandomSoilGenerator/bin/src/terrain/gen/terrainGet.o"
   },
   {
     "arguments": [
       "/usr/bin/g++",
-      "-Iinclude/core",
-      "-Iinclude/raylib",
-      "-Iinclude/world",
+      "-Iinclude",
+      "-Isrc",
       "-std=c++17",
+      "-Wall",
+      "-Wextra",
       "-c",
       "-o",
-      "bin/src/world/tileSet.o",
-      "src/world/tileSet.cpp"
+      "bin/src/grid/grid.o",
+      "src/grid/grid.cpp"
     ],
     "directory": "/home/ok/Code/RandomSoilGenerator",
-    "file": "/home/ok/Code/RandomSoilGenerator/src/world/tileSet.cpp",
-    "output": "/home/ok/Code/RandomSoilGenerator/bin/src/world/tileSet.o"
+    "file": "/home/ok/Code/RandomSoilGenerator/src/grid/grid.cpp",
+    "output": "/home/ok/Code/RandomSoilGenerator/bin/src/grid/grid.o"
   },
   {
     "arguments": [
       "/usr/bin/g++",
-      "-Iinclude/core",
-      "-Iinclude/raylib",
-      "-Iinclude/world",
+      "-Iinclude",
+      "-Isrc",
       "-std=c++17",
+      "-Wall",
+      "-Wextra",
       "-c",
       "-o",
       "bin/main.o",
