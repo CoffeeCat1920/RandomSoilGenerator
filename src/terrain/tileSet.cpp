@@ -1,8 +1,11 @@
-#include "tileSet.h"
+#include "tileSet.hpp"
 #include "../../include/nlohmann/json_utils.hpp"
-#include "raylib.h"
+#include "../../include/raylib/raylib.h"
+#include "settings.hpp"
 
+#include <cstdint>
 #include <fstream>
+#include <memory>
 #include <stdexcept>
 #include <string>
 
@@ -33,4 +36,12 @@ TileSet::TileSet(std::filesystem::path jsonPath) :
 
   tileWidth = mapData["tileWidth"];
   tileHeight = mapData["tileHeight"];
+
+  uint8_t id = 0;
+  for (int x = 0; x < tileWidth; x += BLOCK) {
+    for (int y = 0; y < tileHeight; y += BLOCK) {
+      tiles.push_back( std::make_shared<Tile>(id, x, y) );
+      id++;
+    } 
+  }
 }

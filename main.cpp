@@ -1,12 +1,15 @@
 #include "./include/raylib/raylib.h"
-#include "./include/core/settings.h"
-#include "./include/core/colors.h"
+#include "./include/core/settings.hpp"
+#include "./include/core/colors.hpp"
+
+#include "./src/grid/grid.hpp"
 
 class Game {
   
 private:
-
-
+  
+  Grid grid;
+  
 public:
 
   Game() {} 
@@ -15,12 +18,13 @@ public:
   }
 
   void Draw() {
+    grid.DrawStencil();
   }
 };
 
-int main (int argc, char *argv[]) {
+int main () {
   
-  InitWindow(BLOCK * BOARD, BLOCK * BOARD, "Soil thing");
+  InitWindow(BLOCK * SCREEN_WIDTH, BLOCK * SCREEN_HEIGHT, "Soil thing");
 
   SetTargetFPS(60);
 

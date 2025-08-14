@@ -3,7 +3,9 @@
 #include "raylib.h"
 #include <cstdint>
 #include <filesystem>
+#include <memory>
 #include <sys/types.h>
+#include <vector>
 
 struct Tile {
   uint16_t id;
@@ -21,7 +23,7 @@ private:
 
   uint8_t tileWidth, tileHeight;
 
-  bool initialied = false;
+  std::vector<std::shared_ptr<Tile>> tiles;
 
 public:
 

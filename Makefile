@@ -1,67 +1,51 @@
-# Define the compiler
+# Compiler
 CXX = g++
 
-# Define directories
+# Directories
 SRCDIR = src
 INCDIR = include
-COREINCDIR = $(INCDIR)/core
-RAYLIBINCDIR = $(INCDIR)/raylib
-WORLDINCDIR = $(INCDIR)/world
 BINDIR = bin
 LIBDIR = lib
 
-# Target executable
+# Target binary
 TARGET = $(BINDIR)/core
 
-# Find all .cpp files in src/ and subdirectories
-SRCFILES = $(wildcard $(SRCDIR)/**/*.cpp) $(wildcard $(SRCDIR)/*.cpp)
-
-# Add main.cpp from root
-SRCFILES += main.cpp
-
-# Object files (same location as .cpp files)
-OBJECTS = $(patsubst %.cpp, %.o, $(SRCFILES))
-
-# Compiler flags
-CXXFLAGS = -I$(COREINCDIR) -I$(RAYLIBINCDIR) -I$(WORLDINCDIR) -std=c++17
-
-# Linker flags
+# Compiler & linker flags
+CXXFLAGS = -I$(INCDIR) \
+           -I$(SRCDIR) \
+           -std=c++17 -Wall -Wextra -MMD -MP
 LDFLAGS = -L$(LIBDIR) -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
-# Default rule
+# Find all .cpp files under src/
+SRCFILES := $(shell find $(SRCDIR) -name '*.cpp') main.cpp
+
+# Convert src/.../file.cpp -> bin/.../file.o
+OBJECTS := $(patsubst %.cpp,$(BINDIR)/%.o,$(SRCFILES))
+
+# Default
 all: $(TARGET)
 
-# Link object files into final binary
+# Link
 $(TARGET): $(OBJECTS)
 	@echo "Linking: $@"
 	$(CXX) $^ -o $@ $(LDFLAGS)
 
-# Rule to compile .cpp files into .o files in same folder
-%.o: %.cpp
+# Compile rule — keep directory structure inside bin/
+$(BINDIR)/%.o: %.cpp
+	@mkdir -p $(dir $@)
 	@echo "Compiling $<"
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Clean build artifacts
+# Include dependency files
+-include $(OBJECTS:.o=.d)
+
+# Clean
 clean:
 	@echo "Cleaning build..."
-	@rm -rf $(OBJECTS) $(TARGET)
+	rm -rf $(BINDIR)/$(SRCDIR) $(BINDIR)/main.o $(BINDIR)/main.d $(TARGET)
 
-# Debug info
-debug:
-	@echo "Source files:"
-	@echo $(SRCFILES)
-	@echo
-	@echo "Object files:"
-	@echo $(OBJECTS)
-	@echo
-	@echo "Target: $(TARGET)"
-
-# Run the program
+# Run
 run: all
-	@./$(TARGET)
+	./$(TARGET)
 
-# Clean, build, and run
-run-clean: clean all
-	@./$(TARGET)
-
-.PHONY: all clean debug run run-clean
+.PHONY: all clean run
