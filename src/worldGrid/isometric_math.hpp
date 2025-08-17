@@ -5,7 +5,7 @@ namespace IsocMath {
 
   inline Vector2 ToIsometric(Vector2 vec) {
 
-    float x = (vec.x - vec.y) * (TILE_WIDTH * 0.5f) - (TILE_WIDTH * 0.5f) + (float)GetScreenWidth()/2;
+    float x = (vec.x - vec.y) * (TILE_WIDTH * 0.5f) - (TILE_WIDTH * 0.5f) + (float)GetScreenWidth()/2 + BLOCK;
     float y = (vec.x + vec.y) * (TILE_HEIGHT * 0.5f);
 
     return Vector2{x, y};

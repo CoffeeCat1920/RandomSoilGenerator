@@ -17,11 +17,8 @@ TileMap::TileMap(std::filesystem::path dataPath)
   in.read(reinterpret_cast<char*>(&height), sizeof(height));
 
   tiles.resize(width * height);
-  zIndex.resize(width * height);
 
   in.read(reinterpret_cast<char*>(tiles.data()), tiles.size() * sizeof(uint8_t));
-
-  in.read(reinterpret_cast<char*>(zIndex.data()), zIndex.size() * sizeof(uint8_t));
 
   if (!in) {
       throw std::runtime_error("ERROR: Failed to fully read TileMap data from: " + dataPath.string() + "\n");

@@ -28,5 +28,4 @@ private:
 public:
 
   TileSet(std::filesystem::path jsonPath); 
-  
 };

@@ -12,7 +12,6 @@ private:
   uint16_t width, height;
 
   std::vector<uint8_t> tiles;    
-  std::vector<uint8_t> zIndex;  
 
 public:
   TileMap(std::filesystem::path path);
