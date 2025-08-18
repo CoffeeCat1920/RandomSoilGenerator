@@ -1,31 +1,12 @@
-#include "./include/raylib/raylib.h"
-#include "./include/core/settings.h"
-#include "./include/core/colors.h"
-#include "include/world/tileMap.h"
+#include "raylib/raylib.h"
+#include "core/settings.hpp"
+#include "core/colors.hpp"
+#include "game/game.hpp"
 
-class Game {
+int main () {
   
-private:
+  InitWindow(BLOCK * SCREEN_WIDTH, BLOCK * SCREEN_HEIGHT, "Soil thing");
 
-  TileMap tileMap;
-
-public:
-
-  Game() : 
-    tileMap("./assets/Tiled/json/Normal.json") {}
-
-  void Init() {
-    tileMap.Init();
-  }
-
-  void Draw() {
-    tileMap.Draw();
-  }
-};
-
-int main (int argc, char *argv[]) {
-  
-  InitWindow(BLOCK * BOARD, BLOCK * BOARD, "Soil thing");
   SetTargetFPS(60);
 
   Game game;
