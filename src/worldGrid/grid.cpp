@@ -1,20 +1,24 @@
 #include "grid.hpp"
+#include "dataStruts/tileMap.hpp"
 #include "isometric_math.hpp"
-
 #include "raylib/raylib.h"
 #include "core/settings.hpp"
 #include "core/colors.hpp"
 #include "tileMap/tileSet.hpp"
 #include "generate/hightMapGen/terrainGen.hpp"
 #include "generate/tileMapGen/tileMapGen.hpp"
+
 #include <cstdint>
 #include <cstdio>
+#include <vector>
 
-WorldGrid::WorldGrid() :
-  tileSet("assets/Tiled/TileSets/Generic_Tileset.json")
+WorldGrid::WorldGrid(uint8_t width, uint8_t height) :
+  tileSet("assets/Tiled/TileSets/Generic_Tileset.json"),
+  width(width),
+  height(height)
 {
   zIndex = HeightMapGen::GenerateNewHeightMap(4206969, BOARD_X, BOARD_Y);
-  tileMap = TileMapGen::GenerateNewTileMap(zIndex, tileSet);
+  std::vector<uint16_t> tiles= TileMapGen::GenerateNewTileMap(zIndex, tileSet);
 }
 
 void WorldGrid::DrawStencil() {
@@ -42,6 +46,15 @@ void WorldGrid::DrawStencil() {
   }
 
   return;
+}
+
+void WorldGrid::Init() {
+  std::vector<uint16_t> tiles = TileMapGen::GenerateNewTileMap(zIndex, tileSet);
+  TileMapData tileMapData;
+  tileMapData.tiles = tiles;
+  tileMapData.width = width;
+  tileMapData.height = height;
+  tileMap.Init(tileMapData); 
 }
 
 void WorldGrid::Draw() {

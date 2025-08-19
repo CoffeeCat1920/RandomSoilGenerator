@@ -9,7 +9,7 @@ int main () {
 
   SetTargetFPS(60);
 
-  Game game;
+  Game game(SCREEN_WIDTH, SCREEN_HEIGHT);
 
   game.Init();
 

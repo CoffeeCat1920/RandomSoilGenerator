@@ -7,8 +7,8 @@ private:
   TileMapData tileMapData;
 
 public:
-  TileMap(TileMapData tileMapData);
+  TileMap();
 
-  void Init();
+  void Init(TileMapData tileMapData);
   void Draw();
 };

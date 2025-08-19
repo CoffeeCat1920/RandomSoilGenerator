@@ -67,6 +67,7 @@ void TileMapIO::Create(std::filesystem::path filePath, TileMapData tileMapData) 
   std::filesystem::create_directory(filePath);
 
   filePath /= "tileMap.dat";
+
   std::ofstream out(filePath); 
 
   Save(filePath, tileMapData);

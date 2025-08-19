@@ -1,9 +1,10 @@
 #include "tileMap.hpp"
 #include "dataStruts/tileMap.hpp"
 
-TileMap::TileMap(TileMapData tileMapData)
-    : tileMapData(tileMapData) {}
+TileMap::TileMap() {}
 
-void TileMap::Init() {}
+void TileMap::Init(TileMapData tileMapData) {
+  this->tileMapData = tileMapData;
+}
 
 void TileMap::Draw() {}
