@@ -1,26 +1,9 @@
 #include "tileMap.hpp"
-#include <cstdint>
-#include <filesystem>
-#include <fstream>
-#include <ios>
-#include <stdexcept>
+#include "dataStruts/tileMap.hpp"
 
-TileMap::TileMap(std::filesystem::path dataPath)
-    : dataPath(dataPath)
-{
-  std::ifstream in(dataPath, std::ios::binary);
-  if (!in.is_open()) {
-    throw std::runtime_error("ERROR: Can't find TileMap at path: " + dataPath.string() + "\n");
-  }
+TileMap::TileMap(TileMapData tileMapData)
+    : tileMapData(tileMapData) {}
 
-  in.read(reinterpret_cast<char*>(&width), sizeof(width));
-  in.read(reinterpret_cast<char*>(&height), sizeof(height));
+void TileMap::Init() {}
 
-  tiles.resize(width * height);
-
-  in.read(reinterpret_cast<char*>(tiles.data()), tiles.size() * sizeof(uint8_t));
-
-  if (!in) {
-      throw std::runtime_error("ERROR: Failed to fully read TileMap data from: " + dataPath.string() + "\n");
-  }
-}
+void TileMap::Draw() {}

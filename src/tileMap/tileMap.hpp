@@ -1,20 +1,13 @@
 #pragma once
 
-#include <cstdint>
-#include <filesystem>
-#include <vector>
+#include "dataStruts/tileMap.hpp"
 
 class TileMap {
 private:
-  std::filesystem::path dataPath;
-
-  uint8_t x, y;
-  uint16_t width, height;
-
-  std::vector<uint8_t> tiles;    
+  TileMapData tileMapData;
 
 public:
-  TileMap(std::filesystem::path path);
+  TileMap(TileMapData tileMapData);
 
   void Init();
   void Draw();

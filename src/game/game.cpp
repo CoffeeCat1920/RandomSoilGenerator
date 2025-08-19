@@ -3,9 +3,9 @@
 
 Game::Game() {}
 
-void Game::Init() {
-}
+void Game::Init() {}
 
 void Game::Draw() {
-  worldGrid.DrawStencil();
+  // worldGrid.DrawStencil();
+  worldGrid.Draw();
 }

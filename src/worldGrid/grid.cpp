@@ -4,12 +4,17 @@
 #include "raylib/raylib.h"
 #include "core/settings.hpp"
 #include "core/colors.hpp"
-#include "worldGrid/hightMapGen/terrainGen.hpp"
+#include "tileMap/tileSet.hpp"
+#include "generate/hightMapGen/terrainGen.hpp"
+#include "generate/tileMapGen/tileMapGen.hpp"
 #include <cstdint>
 #include <cstdio>
 
-WorldGrid::WorldGrid() {
+WorldGrid::WorldGrid() :
+  tileSet("assets/Tiled/TileSets/Generic_Tileset.json")
+{
   zIndex = HeightMapGen::GenerateNewHeightMap(4206969, BOARD_X, BOARD_Y);
+  tileMap = TileMapGen::GenerateNewTileMap(zIndex, tileSet);
 }
 
 void WorldGrid::DrawStencil() {
@@ -37,4 +42,8 @@ void WorldGrid::DrawStencil() {
   }
 
   return;
+}
+
+void WorldGrid::Draw() {
+  tileSet.DrawTile(0, GetScreenWidth()/2, GetScreenHeight()/2);
 }

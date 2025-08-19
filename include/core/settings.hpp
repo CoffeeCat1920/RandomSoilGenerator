@@ -1,5 +1,6 @@
 #pragma once
 
+
 inline constexpr int BLOCK          = 32;
 
 inline constexpr int SCREEN_WIDTH  = 24;

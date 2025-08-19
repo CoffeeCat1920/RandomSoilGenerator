@@ -1,5 +1,6 @@
 #pragma once
 
+#include "tileMap/tileSet.hpp"
 #include <cstdint>
 #include <vector>
 
@@ -12,13 +13,16 @@ class WorldGrid {
   
 private:
 
-  uint16_t width, height;
-
   std::vector<uint8_t> zIndex; 
+  std::vector<uint8_t> tileMap;
+
+  TileSet tileSet;
   
 public:
 
   WorldGrid();
   
   void DrawStencil();
+  void Init();
+  void Draw();
 };

@@ -1,10 +1,11 @@
 #include "tileSet.hpp"
 #include "nlohmann/json_utils.hpp"
-#include "../../include/raylib/raylib.h"
+#include "raylib/raylib.h"
 #include "core/settings.hpp"
 
 #include <cstdint>
 #include <fstream>
+#include <iostream>
 #include <memory>
 #include <stdexcept>
 #include <string>
@@ -34,14 +35,25 @@ TileSet::TileSet(std::filesystem::path jsonPath) :
   atlasWidth = mapData["imagewidth"];
   atlasHeight = mapData["imageheight"];
 
-  tileWidth = mapData["tileWidth"];
-  tileHeight = mapData["tileHeight"];
+  tileWidth = mapData["tilewidth"];
+  tileHeight = mapData["tileheight"];
 
   uint8_t id = 0;
-  for (int x = 0; x < tileWidth; x += BLOCK) {
-    for (int y = 0; y < tileHeight; y += BLOCK) {
+  for (int x = 0; x < atlasWidth; x += BLOCK) {
+    for (int y = 0; y < atlasHeight; y += BLOCK) {
       tiles.push_back( std::make_shared<Tile>(id, x, y) );
       id++;
     } 
   }
+}
+
+void TileSet::DrawTile(uint16_t id, uint8_t x, uint8_t y) {
+  if (id >= tiles.size()) {
+    std::cerr << "ERROR: INVALID TILE OF id:" << id << "\n";
+    return;
+  }
+
+  std::shared_ptr<Tile> tile = tiles[id];
+  Rectangle rec = Rectangle{(float)tile->x, (float)tile->y, (float)tileWidth, (float)tileHeight};   
+  DrawTextureRec(atlas, rec, Vector2{(float)x, (float)y}, WHITE);
 }
