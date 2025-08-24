@@ -6,11 +6,11 @@ inline constexpr int BLOCK          = 32;
 inline constexpr int SCREEN_WIDTH  = 24;
 inline constexpr int SCREEN_HEIGHT = 24;
 
-inline constexpr int BOARD_X          = 25;
-inline constexpr int BOARD_Y          = 25;
+inline constexpr int BOARD_X          = 32 * 2;
+inline constexpr int BOARD_Y          = 32 * 2;
 
-inline constexpr int TILE_WIDTH       = 32 * 2;
-inline constexpr int TILE_HEIGHT      = 16 * 2;
+inline constexpr int TILE_WIDTH       = 32;
+inline constexpr int TILE_HEIGHT      = 16;
 
 inline constexpr int MAX_HEIGHT = 12;
 

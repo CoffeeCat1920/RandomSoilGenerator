@@ -2,7 +2,7 @@
 #include "worldGrid/grid.hpp"
 #include <cstdint>
 
-Game::Game(uint8_t width, uint8_t height) : worldGrid(width, height) {}
+Game::Game(uint32_t width, uint32_t height) : worldGrid(width, height) {}
 
 void Game::Init() {
   worldGrid.Init();

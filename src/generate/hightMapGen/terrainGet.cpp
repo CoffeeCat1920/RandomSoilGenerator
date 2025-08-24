@@ -1,13 +1,15 @@
 #include <cstdint>
+#include <iostream>
 #include <vector>
 
 #include "core/settings.hpp"
 #include "FSL/FastNoiseLite.h"
 #include "terrainGen.hpp"
 
-std::vector<uint8_t> HeightMapGen::GenerateNewHeightMap(uint32_t seed, int8_t width, uint8_t height) {
+std::vector<uint8_t> HeightMapGen::GenerateNewHeightMap(uint32_t seed, int32_t width, uint32_t height) {
 
   std::vector<uint8_t> zIndex(width * height, 0);
+  std::cout << "DEBUG: Size of HeightMap is:" << zIndex.size() << std::endl;
 
   FastNoiseLite noise;
   noise.SetSeed(seed);  

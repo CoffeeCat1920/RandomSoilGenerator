@@ -1,6 +1,7 @@
 #include "tileSet.hpp"
 #include "nlohmann/json_utils.hpp"
 #include "raylib/raylib.h"
+#include "isoMath/isometric_math.hpp"
 #include "core/settings.hpp"
 
 #include <cstdint>
@@ -47,7 +48,7 @@ TileSet::TileSet(std::filesystem::path jsonPath) :
   }
 }
 
-void TileSet::DrawTile(uint16_t id, uint8_t x, uint8_t y) {
+void TileSet::DrawTile(uint16_t id, uint32_t x, uint32_t y, uint8_t z) {
   if (id >= tiles.size()) {
     std::cerr << "ERROR: INVALID TILE OF id:" << id << "\n";
     return;
@@ -55,5 +56,6 @@ void TileSet::DrawTile(uint16_t id, uint8_t x, uint8_t y) {
 
   std::shared_ptr<Tile> tile = tiles[id];
   Rectangle rec = Rectangle{(float)tile->x, (float)tile->y, (float)tileWidth, (float)tileHeight};   
-  DrawTextureRec(atlas, rec, Vector2{(float)x, (float)y}, WHITE);
+  Vector2 pos = IsocMath::ToIsometricWithZ(Vector2{(float)x, (float)y}, z); 
+  DrawTextureRec(atlas, rec, pos, WHITE);
 }

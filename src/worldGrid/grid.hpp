@@ -17,12 +17,12 @@ private:
   TileSet tileSet;
   TileMap tileMap;
 
-  uint8_t width, height;
+  uint16_t width, height;
 
   void DrawStencil();
 public:
 
-  WorldGrid(uint8_t width, uint8_t height);
+  WorldGrid(uint32_t width, uint32_t height);
   
   void Init();
   void Draw();

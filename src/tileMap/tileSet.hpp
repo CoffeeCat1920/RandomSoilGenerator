@@ -28,5 +28,5 @@ private:
 public:
 
   TileSet(std::filesystem::path jsonPath); 
-  void DrawTile(uint16_t id, uint8_t x, uint8_t y);
+  void DrawTile(uint16_t id, uint32_t x, uint32_t y, uint8_t z);
 };

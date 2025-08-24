@@ -14,7 +14,7 @@ private:
 
 public:
 
-  Game(uint8_t width, uint8_t height); 
+  Game(uint32_t width, uint32_t height); 
 
   void Init();
   void Draw();
